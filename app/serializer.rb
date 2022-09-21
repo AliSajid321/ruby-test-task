@@ -11,8 +11,9 @@ class Serializer
     def initialize(obj)
         if obj.class == Comment
             @obj = Comment.new(obj.id, obj.body, obj.title)
-        elsif
-            @obj = Post.new(obj.id, obj.title, obj.date)
+        elsif obj.class == Post
+            new_date = Date.parse(obj.date.to_s).strftime('%d-%m-%Y')
+            @obj = Post.new(obj.id, obj.title, new_date)
         end
     end
 
